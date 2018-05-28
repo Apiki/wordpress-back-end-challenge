@@ -1,6 +1,6 @@
-# Backend Challenge
+# WordPress Backend Challenge
 
-Desafio para os futuros backends da Apiki.
+Desafio para os futuros programadores back-end em WordPress da Apiki.
 
 ## Introdução
 
