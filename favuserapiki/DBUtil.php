@@ -27,15 +27,22 @@ class DBUtil
 
             $table_name = $this->name_table;
             $sql = "CREATE TABLE $table_name (
-  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  post_id int,
-  user_id int 
+ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  post_id bigint unsigned,
+  user_id bigint unsigned
 ) ";
-            dbDelta($sql);
+            $this->executeSQL($sql);
+            $sql = "alter table wp_fav_user add constraint  fk_user foreign key (user_id) references wp_users (id);";
+            $this->executeSQL($sql);
+            $sql  ="alter table wp_fav_user add constraint  fk_post foreign key (post_id) references wp_posts (id);";
+            $this->executeSQL($sql);
             add_option ('version_bd_api', $this->version);
         }
 
 
+    }
+    private function executeSQL($sql){
+        dbDelta($sql);
     }
     public function insertDB($post_id,$user_id){
         $this->db->insert(
