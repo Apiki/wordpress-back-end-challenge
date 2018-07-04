@@ -41,7 +41,7 @@ class ApiController
     private function validateRequest($request){
         $obj = new stdClass();
         $obj->sucess = true;
-        $obj->message = 'ok';
+        $obj->message = '';
         if(!isset($request['post_id']) || !isset($request['user_id'])){
             $obj->sucess = false;
             $obj->message = 'Dados incorretos.';
