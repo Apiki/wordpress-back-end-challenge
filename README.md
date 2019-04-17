@@ -7,7 +7,11 @@ Api está com as funções básicas
 * POST - posts/add/{id}
 * DELETE = posts/del/{id}
 
-** Pendências **
+**Dependências**
+O plugin funciona nativamente com a autenticação via cookies, porém para funcionar via auth_basic, deve-se instalar o plugin:
+https://github.com/WP-API/Basic-Auth
+
+**Pendências**
 1 - Verificar se o usuário está logado;
 2 - Criar a tabela via instalação do plugin;
 3 - Orientação a Objetos;
