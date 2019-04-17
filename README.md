@@ -1,3 +1,19 @@
+# API usando WP_Rest_API 
+Api está com as funções básicas
+
+* GET - posts
+* GET - posts/favoritos
+* GET - posts/{id}
+* POST - posts/add/{id}
+* DELETE = posts/del/{id}
+
+** Pendências **
+1 - Verificar se o usuário está logado;
+2 - Criar a tabela via instalação do plugin;
+3 - Orientação a Objetos;
+4 - Verificar as funções para evitar insersão de registros duplicados;
+5 - Melhora as mensagens de retorno.
+
 # WordPress Back-end Challenge
 
 Desafio para os futuros programadores back-end em WordPress da Apiki.
