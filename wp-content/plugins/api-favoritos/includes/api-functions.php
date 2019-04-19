@@ -1,18 +1,9 @@
 <?php
 
 /**
-*  Apenas usuarios logados pode acessar a API
-*/
-/*
-add_filter('rest_authentication_errors', function( $result ) {
-    if ( ! empty( $result ) ) {
-        return $result;
-    }
-    if ( ! is_user_logged_in() ) {
-        return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => 401 ) );
-    }
-    return $result;
-});
+*  API sem orientação a objetos
+*  Alexandre S. Anjos
+*  https://github.com/AlexandreSA/wordpress-back-end-challenge/tree/alexandre-anjos
 */
 
 
@@ -30,18 +21,18 @@ function api_register_api_endpoints() {
     'methods' => 'GET',
     'callback' => 'api_get_post_items',
   ) );
-    register_rest_route( 'api/v2', '/posts/favoritos', array(
+  register_rest_route( 'api/v2', '/posts/favoritos', array(
     'methods' => 'GET',
     'callback' => 'api_get_posts_favoritos',
     /*'permission_callback' => function () {
       return current_user_can( 'edit_others_posts' );
     }*/
   ) );
-    register_rest_route( 'api/v2', '/posts/(?P<id>\d+)', array(
+  register_rest_route( 'api/v2', '/posts/(?P<id>\d+)', array(
     'methods' => 'GET',
     'callback' => 'api_get_post_items_byid'
   ) );
-    register_rest_route( 'api/v2', '/posts/add/(?P<id>\d+)', array(
+  register_rest_route( 'api/v2', '/posts/add/(?P<id>\d+)', array(
     'methods' => 'POST',
     'callback' => 'api_add_posts_favoritos'
   ) );
@@ -61,9 +52,9 @@ function api_get_post_items() {
   $args = array (
     'post_status' => 'publish'
   );
- 
+
   $items = array();
- 
+
   if ( $posts = get_posts( $args ) ) {
     foreach ( $posts as $post ) {
       $items[] = array(
@@ -85,10 +76,10 @@ function api_get_post_items() {
 *   url = http://localhost/wordpress-back-end-challenge/wp-json/api/v2/posts/favoritos
 */
 function api_get_posts_favoritos($data) {
-    global $wpdb;
-    $query = "SELECT * FROM `wp_favoritos`";
-    $list = $wpdb->get_results($query);
-    return $list;
+  global $wpdb;
+  $query = "SELECT * FROM `wp_favoritos`";
+  $list = $wpdb->get_results($query);
+  return $list;
 }
 
 
@@ -107,15 +98,15 @@ function api_get_post_items_byid(WP_REST_Request $request) {
   $items = array();
   
   $post = get_post($id);
- 
-      $items[] = array(
-        'id' => $post->ID,
-        'title' => $post->post_title,
-        'author' => get_the_author_meta( 'display_name', $post->post_author ),
-        'content' => apply_filters( 'the_content', $post->post_content ),
-        'teaser' => $post->post_excerpt,
-        'guid' => $post->guid
-      );
+
+  $items[] = array(
+    'id' => $post->ID,
+    'title' => $post->post_title,
+    'author' => get_the_author_meta( 'display_name', $post->post_author ),
+    'content' => apply_filters( 'the_content', $post->post_content ),
+    'teaser' => $post->post_excerpt,
+    'guid' => $post->guid
+  );
 
   return $items;
 }
@@ -133,39 +124,37 @@ function api_add_posts_favoritos(WP_REST_Request $request) {
   $id = $request->get_param( 'id' );
 
     // retorna os dados do usuário logado
-    $current_user = wp_get_current_user();
+  $current_user = wp_get_current_user();
     //passamos o ID do usuário e geramos o array
-    $user_info = get_userdata($current_user->ID);
+  $user_info = get_userdata($current_user->ID);
     //Criamos uma variavel com os dados que desejamos
-    //Aqui a lista completa dos dados que podemos puxar
-    //WordPress http://codex.wordpress.org/Author_Templates#Using_Author_Information
-    $user_login = $user_info->user_login;
-    $user_id = $user_info->ID;
+  $user_login = $user_info->user_login;
+  $user_id = $user_info->ID;
 
   $items = array();
   
   $post = get_post($id);
- 
-      $items[] = array(
-        'id' => $post->ID,
-        'title' => $post->post_title,
-        'author' => get_the_author_meta( 'display_name', $post->post_author ),
-        'content' => apply_filters( 'the_content', $post->post_content ),
-        'teaser' => $post->post_excerpt,
-        'guid' => $post->guid
-      );
 
-      global $wpdb;
-      $wpdb->insert( 
-        'wp_favoritos', 
-        array( 
-            'post_id'     => $post->ID,
-            'post_title'  => $post->post_title,
-            'guid'        => $post->guid,
-            'user_id'     => (int) $user_id,
-            'user_login'  => $user_login
-        )
-    );
+  $items[] = array(
+    'id' => $post->ID,
+    'title' => $post->post_title,
+    'author' => get_the_author_meta( 'display_name', $post->post_author ),
+    'content' => apply_filters( 'the_content', $post->post_content ),
+    'teaser' => $post->post_excerpt,
+    'guid' => $post->guid
+  );
+
+  global $wpdb;
+  $wpdb->insert( 
+    'wp_favoritos', 
+    array( 
+      'post_id'     => $post->ID,
+      'post_title'  => $post->post_title,
+      'guid'        => $post->guid,
+      'user_id'     => (int) $user_id,
+      'user_login'  => $user_login
+    )
+  );
     //$record_id = $wpdb->insert_id;
   return $items;
 }
@@ -176,7 +165,6 @@ function api_add_posts_favoritos(WP_REST_Request $request) {
 *   metodo = '$_DELETE'
 *   url = http://localhost/wordpress-back-end-challenge/wp-json/api/v2/posts/del/{id}
 */
-
 function api_del_posts_favoritos(WP_REST_Request $request) {
   // You can access parameters via direct array access on the object:
   //$param = $request['id'];
@@ -195,24 +183,24 @@ function api_del_posts_favoritos(WP_REST_Request $request) {
   $items = array();
   
   $post = get_post($id);
- 
-      $items[] = array(
-        'id' 		=> $post->ID,
-        'title' 	=> $post->post_title,
-        'author' 	=> get_the_author_meta( 'display_name', $post->post_author ),
-        'content' 	=> apply_filters( 'the_content', $post->post_content ),
-        'teaser' 	=> $post->post_excerpt,
-        'guid' 		=> $post->guid
-      );
 
-      global $wpdb;
-      $wpdb->delete( 
-        'wp_favoritos', 
-        array( 
-            'post_id'     => $post->ID,
-            'user_id'     => (int) $user_id
-        )
-    );
+  $items[] = array(
+    'id' 		=> $post->ID,
+    'title' 	=> $post->post_title,
+    'author' 	=> get_the_author_meta( 'display_name', $post->post_author ),
+    'content' 	=> apply_filters( 'the_content', $post->post_content ),
+    'teaser' 	=> $post->post_excerpt,
+    'guid' 		=> $post->guid
+  );
+
+  global $wpdb;
+  $wpdb->delete( 
+    'wp_favoritos', 
+    array( 
+      'post_id'     => $post->ID,
+      'user_id'     => (int) $user_id
+    )
+  );
     //$record_id = $wpdb->insert_id;
   return $items;
 }

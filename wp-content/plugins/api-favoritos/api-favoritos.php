@@ -6,7 +6,7 @@ Description: favoritar posts para usuários logados usando a WP REST API.
 Deve instalar o plugin git clone https://github.com/WP-API/Basic-Auth.git para autenticação básica do usuário
 Version: 1.0
 Author: Alexandre S. Anjos
-Author URI: http://localhost/
+Author URI: https://github.com/AlexandreSA/wordpress-back-end-challenge/tree/alexandre-anjos
 License: GPLv2 or later
 Text Domain: API-Favoritos
 */
@@ -20,4 +20,6 @@ Text Domain: API-Favoritos
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-require dirname(__FILE__).'/api-functions.php';
+require_once dirname(__FILE__).'/includes/apiController.php';
+
+
