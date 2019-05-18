@@ -44,7 +44,7 @@ add_action('plugins_loaded', function() {
     add_action( 'rest_api_init', function () use ($usuarioId, $logado, $tabela, $wpdb) {
         
         register_rest_route( 'post_favorito/v1', 'add/(?P<id>\d+)', array(
-            'methods' => 'GET',
+            'methods' => 'POST',
             'callback' => function ($param) use ($usuarioId, $logado, $tabela, $wpdb) {
 
                 $postTipo = get_post_type($param->get_param('id'));
@@ -69,7 +69,7 @@ add_action('plugins_loaded', function() {
 
 
         register_rest_route( 'post_favorito/v1', 'del/(?P<id>\d+)', array(
-            'methods' => 'GET',
+            'methods' => 'DELETE',
             'callback' => function ($param) use ($usuarioId, $logado, $tabela, $wpdb) {
                 $dados = [
                     'usuario_id' => $usuarioId,
@@ -86,28 +86,60 @@ add_action('plugins_loaded', function() {
 });
 
 //adiciona botão para adicionar / remover dos favoritos
-add_filter('the_content', function ($post) {
+add_filter('the_content', function ($postConteudo) {
 
     if (is_single() && is_user_logged_in()) {
 
         global $wpdb;
+        $post = get_post();
+    
 
         $postFavorito = $wpdb->get_results( "
             SELECT COUNT(*) AS total FROM {$wpdb->prefix}posts_favorito WHERE post_id = " 
-            . get_post()->ID . " AND user_id = " . get_current_user_id(), OBJECT );
+            . $post->ID . " AND usuario_id = " . get_current_user_id(), OBJECT );
+
 
         //valida se o post ja esta nos favoritos e adiciona botão para remover poste dos favoritos
-        if($postFavorito[0]->total > 0) {
-            return $post . '<p>
-                <button onclick="del_post_favorito(' . get_post()->ID . ')">Remover post dos favoritos</button>
-            </p>';    
-        }
+        $label = ($postFavorito[0]->total > 0) ? 'Remover post dos favoritos' : 'Adicionar post aos favoritos';
 
-        return $post . '<p>
-            <button onclick="add_post_favorito(' . get_post()->ID . ')">Adicionar post aos favoritos</button>
+        return $postConteudo . '<p>
+        
+            <button onclick="post_favorito(' . $post->ID . ', this)">' . $label . '</button>
+
+            <script> 
+                function post_favorito(id, el) {
+                    
+                    var metodo = \'POST\';
+                    var url  = \'add\';
+
+                    if(el.innerHTML === \'Remover post dos favoritos\') {
+                        var metodo = \'DELETE\';
+                        var url  = \'del\'; 
+                    }
+
+                    el.innerHTML = \'Carregando...\';
+
+                    fetch(\'' . get_site_url() . '/wp-json/post_favorito/v1/\' + url + \'/\'  + id, {method: metodo})
+                    .then(function(res) {
+
+                        if (!res.ok) {
+                            throw Error(res.statusText);
+                        }
+
+                        el.innerHTML = (url === \'add\') ? 
+                            \'Remover post dos favoritos\' : \'Adicionar post aos favoritos\';
+                    })
+                    .catch(function() {
+                        el.innerHTML = (url === \'del\') ? 
+                            \'Remover post dos favoritos\' : \'Adicionar post aos favoritos\';
+
+                        alert(\'Erro ao adicionar post aos favoritos tente novamente mais tarde!\');
+                    });
+                }
+            </script>
         </p>';
     }
 
-    return $post;
+    return $postConteudo;
 
 });
