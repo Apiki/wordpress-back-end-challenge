@@ -100,7 +100,7 @@ add_action('plugins_loaded', function() {
                     
                         var a = document.createElement(\'a\');
                         a.innerHTML = item.post_title;
-                        a.setAttribute(\'href\', \'' . get_site_url() . '/\' + item.post_name);
+                        a.setAttribute(\'href\', item.url);
 
                         var li = document.createElement(\'li\');
                         li.appendChild(a);
@@ -132,7 +132,6 @@ add_action('plugins_loaded', function() {
                 $posts = $wpdb->get_results("
                     SELECT 
                         p.ID,
-                        p.post_name,
                         p.post_title
                     FROM {$tabelaPost} as p
                     WHERE p.post_type = 'post' 
@@ -141,7 +140,10 @@ add_action('plugins_loaded', function() {
                     LIMIT $pagina, $limite
                 ");
 
-                return $posts;
+                return array_map(function($post) {
+                    $post->url = get_permalink($post->ID);
+                    return $post;
+                }, $posts);
             },
         ));
 
