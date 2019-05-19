@@ -1,27 +1,11 @@
-# WordPress Back-end Challenge
+# Guia de configuração
 
-Desafio para os futuros programadores back-end em WordPress da Apiki.
+* Colocar o arquivo post-favorito.php dentro da pasta wp-content/plugins
+* Habilitar a reescrita de url
+* Ativar o plugin
 
-## Introdução
+## Configurar para listar os posts favoritos
 
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
+* Colocar o shortcode [postfavorito itenspagina="5"] em uma pagina 
 
-**Especifícações**:
-
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
-
-## Instruções
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-
-## Pré-requisitos
-
-* PHP >= 5.6
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
+O atributo **itenspagina** define a quantidade de posts que sera carregado, o padrão é 5 caso não seja definido.
