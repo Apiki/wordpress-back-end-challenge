@@ -17,6 +17,7 @@
  * License:             GPL v3
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
+require_once( plugin_dir_path(__FILE__).'post-liking-route-controller.php' );
 
 function postliking_install() {
     global $wpdb;
@@ -46,7 +47,6 @@ function postliking_uninstall() {
 }
 
 function post_liking_register_routes() {
-    require_once( plugin_dir_path(__FILE__).'post-liking-route-controller.php' );
     $controller = new Post_Liking_Route_Controller();
     $controller->register_routes();
 }

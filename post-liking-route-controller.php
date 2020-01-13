@@ -35,14 +35,18 @@ class Post_Liking_Route_Controller extends WP_REST_Controller
     }
     
     public function get_items( $request ) {
-        $items = array(); #Query from BD
+        global $wpdb;
+        $table_name = $wpdb->prefix.'postliking';
+
+        $results = $wpdb->get_results( "SELECT * FROM $table_name", 'ARRAY_A' );
+        
         $response = array();
 
-        foreach($items as $item) {
+        foreach($results as $item) {
             $itemdata = $this->prepare_item_for_response($item, $request);
             $response[] = $this->prepare_response_for_collection($itemdata);
         }
-        $response['post_id'] = $request['post_id'];
+
         return new WP_REST_Response( $response, 200 );
     }
 
@@ -54,11 +58,20 @@ class Post_Liking_Route_Controller extends WP_REST_Controller
     }
 
     public function get_item( $request ) {
-        $params = $request->get_params();
-        $item = array(); #Query from BD
-        $response = $this->prepare_item_for_response( $item, $request );
+        global $wpdb;
+        $table_name = $wpdb->prefix.'postliking';
 
-        return new WP_REST_Response( $response, 200 );
+        $item = $request->get_url_params();
+
+        if( $item === null ) {
+            return array("Não ha recursos!");
+        }
+
+        $result = $wpdb->get_row( "SELECT * FROM $table_name WHERE post_id = ".$item['post_id'], 'ARRAY_A' );
+        
+        $response = $this->prepare_item_for_response( $result, $request );
+
+        return $response;
     }
 
     public function get_item_permissions_check( $request ) {
@@ -126,7 +139,17 @@ class Post_Liking_Route_Controller extends WP_REST_Controller
     }
 
     public function prepare_item_for_response( $item, $request ) {
-        return array();
+        if($item === null) {
+            return new WP_Error( 'rest_no_route', 'Nenhuma rota foi encontrada que corresponde com o URL e o método de requisição', array( 'status' => 404 ) );
+        }
+
+        return new WP_REST_Response(
+            array(
+                'status' => 200,
+                'response' => 'Completado!',
+                'body_response' => $item
+            )
+        );
     }
 }
 ?>
