@@ -1,0 +1,24 @@
+.button_bookmarkposts {
+    float: right;
+    margin: 20px 0;
+    font-size: 1em;
+    box-shadow: 2px 2px 1px #2f2d2d;
+    transition: All .3s ease;
+    -webkit-transition: All .3s ease;
+    -moz-transition: All .3s ease;
+    -o-transition: All .3s ease;
+}
+.button_bookmarkposts:focus,
+.button_bookmarkposts:hover,
+.button_bookmarkposts:active {
+    opacity: 0.85;
+    box-shadow: none;
+}
+.button_bookmarkposts.marked {
+    background: #FF5A5F;
+    color: #fff;
+}
+.button_bookmarkposts.unmarked {
+    background: #087E8B;
+    color: #fff;
+}
