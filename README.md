@@ -25,3 +25,5 @@ Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar p
 ## Dúvidas
 
 Em caso de dúvidas, crie uma issue.
+
+
