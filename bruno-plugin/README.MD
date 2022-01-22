@@ -72,5 +72,5 @@ echo $response;
 
 ```
 
-*{BASE_URL} deve ser alterado para o dominio da instalação Wordpress
-*No campo "status", 1 equivale a curtido, 0 equivale a não curtido.
+* {BASE_URL} deve ser alterado para o dominio da instalação Wordpress
+* No campo "status", 1 equivale a curtido, 0 equivale a não curtido.

@@ -12,8 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once( plugin_dir_path(__FILE__).'/includes/bruno-plugin-tables.php');
+require_once( plugin_dir_path(__FILE__).'/includes/bruno-plugin-like.php');
+require_once( plugin_dir_path(__FILE__).'/includes/bruno-plugin-endpoint.php');
 
 register_activation_hook( __FILE__, 'my_plugin_activate' );
 
 
-register_uninstall_hook( __FILE__, 'my_plugin_uninstall' );
+?>
