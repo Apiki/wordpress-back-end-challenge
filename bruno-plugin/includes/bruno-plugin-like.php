@@ -37,9 +37,3 @@ class LikeData {
   }
 
 }
-
-function my_home_pagee(){  
-
-	
-}add_action('wp', 'my_home_pagee');
-
