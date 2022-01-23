@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4']
+    services:
+      mysql:
+        image: mariadb:10
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.16.0
+        with:
+          php-version: ${{ matrix.php-versions }}
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Run tests
+        run: echo y | bin/install-wp-tests.sh wordpress root password 127.0.0.1 && vendor/bin/phpunit
