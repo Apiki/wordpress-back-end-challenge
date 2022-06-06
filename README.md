@@ -2,26 +2,20 @@
 
 Desafio para os futuros programadores back-end em WordPress da Apiki.
 
-## Introdução
+## Resolução
 
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
+Inicialmente para configurar o ambiente eu criei um servidor local com docker compose (pois no README original não possuia nenhuma especificação de ambiente) utilizando os seguintes pré-requisitos
 
-**Especifícações**:
+* PHP: 8.0
+* Wordpress: 5.9
+* Banco de Dados MySql: 5.7
+* PhpMyAdmin: 5.2
 
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
+Como se trata de um plugin que cria suas próprias dependências (como a sua tabela no banco de dados) não é necessário utilizar o ambiente por mim construido porém recomendo que utilizem ao longo dos testes. * É valido relembrar que caso o mesmo seja instalado em outro projeto wordpress, será necessário acessar a url: http://localhost:8000/wp-admin/options-permalink.php e marcar a opção "Nome do Post" para que o REST API do wordpress funcione como esperado.
 
-## Instruções
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
+## Funcionamento
 
-## Pré-requisitos
+O funcionamento foi pensado utilizando o tema base do wordpress Twenty Twenty-Two versão 1.1 onde o próprio plugin cria um opção (em forma de coração ao lado do nome do post) que serve como marcação de "Favorito". Esse dado é carregado na view assim que a mesma é renderizada, o mesmo vem da tabela "wp_favorite_post". As requisições ajax criadas para a inserção dos registros utilizam como base a REST API disponibilizada pelo próprio wordpress. Para fazer o mesmo funcionar basta ativar o plugin e adicionar posts, o novo botão será renderizado na lista imediatamente sem a necessidade de shortcodes.
 
-* PHP >= 5.6
-* Orientado a objetos
 
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
