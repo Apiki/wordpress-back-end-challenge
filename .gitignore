@@ -1,0 +1,8 @@
+node_modules/
+vendor/
+.phpdoc/
+.DS_Store
+*.sql
+*.tar.gz
+*.zip
+.phpdoc
