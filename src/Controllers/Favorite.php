@@ -56,10 +56,10 @@ class Favorite {
 			);
 		}
 
-		$favorite   = new \App\Models\Favorite();
-		$post_liked = $favorite->read( $post_id, $this->user_id );
+		$favorite = new \App\Models\Favorite();
+		$post     = $favorite->read( $post_id, $this->user_id );
 
-		if ( null === $post_liked ) {
+		if ( null === $post ) {
 			$favorite->create( $post_id, $this->user_id );
 			return new \WP_REST_Response(
 				array(
@@ -70,8 +70,8 @@ class Favorite {
 			);
 		}
 
-		$status = ( '0' === $post_liked->status ) ? 1 : 0;
-		$favorite->update( $post_liked->id, $status );
+		$status = ( '0' === $post->liked ) ? 1 : 0;
+		$favorite->update( $post->id, $status );
 
 		switch ( $status ) {
 			case 0:
