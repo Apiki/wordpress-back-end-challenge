@@ -59,7 +59,7 @@ class Favorite {
 	public function create( int $post_id, int $user_id ) {
 		return $this->db->query(
 			$this->db->prepare(
-				"INSERT INTO {$this->table} ( post_id, user_id, status ) VALUES (%d, %d, %d)",
+				"INSERT INTO {$this->table} ( post_id, user_id, liked ) VALUES (%d, %d, %d)",
 				$post_id,
 				$user_id,
 				1
@@ -78,7 +78,7 @@ class Favorite {
 	public function read( $post_id, $user_id ) {
 		return $this->db->get_row(
 			$this->db->prepare(
-				"SELECT id, status FROM {$this->table} WHERE post_id = %d AND user_id = %d",
+				"SELECT id, liked FROM {$this->table} WHERE post_id = %d AND user_id = %d",
 				$post_id,
 				$user_id
 			)
@@ -96,7 +96,7 @@ class Favorite {
 	public function update( int $id, int $status ) {
 		return $this->db->query(
 			$this->db->prepare(
-				"UPDATE {$this->table} SET status = %d WHERE id = %d",
+				"UPDATE {$this->table} SET liked = %d WHERE id = %d",
 				$status,
 				$id
 			)
