@@ -82,7 +82,7 @@ class Config {
             id INTEGER NOT NULL AUTO_INCREMENT,
             post_id INTEGER NOT NULL,
             user_id INTEGER NOT NULL,
-            status TINYINT,
+            liked TINYINT,
 			created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 			updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
