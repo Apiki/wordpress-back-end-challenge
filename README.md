@@ -24,16 +24,16 @@ Para favoritar o usuário necessita estar logado no WordPress. Para isso foi uti
 		POST: http://localhost/wp-json/apiki/challenge/login
 		```
 
+		**Body:**
 		```json
-		Body:
 		{
 			"username": "USERNAME",
 			"password": "PASSWORD"
 		}
 		```
 
+		**Response:**
 		```json
-		Response:
 		{
 			"token": "SEU.JWT.TOKEN",
 			"user_name": "fulano",
@@ -46,8 +46,9 @@ Para favoritar o usuário necessita estar logado no WordPress. Para isso foi uti
 		```
 		POST: http://localhost/wp-json/apiki/challenge/favorite/1
 		```
+
+		**Authorization:**
 		```json
-		Authorization:
 		{
 			"Authorization": "Bearer token",
 		}
@@ -59,9 +60,15 @@ composer lint
 composer lint:fix
 composer security
 ```
+
 Ou todos juntos utilizando o comando:
 ```
 composer check
+```
+
+Além de ter um comando para criar o arquivo de traduções do plugin:
+```
+composer make-pot
 ```
 ## Pré-requisitos
 
