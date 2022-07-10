@@ -1,0 +1,60 @@
+# Copyright (C) 2022 Luis Paiva
+# This file is distributed under the same license as the WordPress Back-end Challenge plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Back-end Challenge 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-back-end-challenge\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-07-10T04:11:07-03:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: wp-back-end-challenge\n"
+
+#. Plugin Name of the plugin
+msgid "WordPress Back-end Challenge"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/luispaiva/wordpress-back-end-challenge"
+msgstr ""
+
+#. Description of the plugin
+msgid "Desafio para os futuros programadores back-end em WordPress da Apiki."
+msgstr ""
+
+#. Author of the plugin
+msgid "Luis Paiva"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/luispaiva"
+msgstr ""
+
+#: src/Controllers/Auth.php:39
+msgid "Usuário e senha são obrigatórios!"
+msgstr ""
+
+#: src/Controllers/Auth.php:52
+msgid "Usuário ou senhas inválidos!"
+msgstr ""
+
+#: src/Controllers/Favorite.php:54
+msgid "Post não encontrado."
+msgstr ""
+
+#: src/Controllers/Favorite.php:67
+#: src/Controllers/Favorite.php:81
+msgid "Post favoritado."
+msgstr ""
+
+#: src/Controllers/Favorite.php:78
+msgid "Remoção de favoritismo."
+msgstr ""
+
+#: src/Routes/Favorite.php:53
+msgid "Você deve estar logado para favoritar este post."
+msgstr ""
