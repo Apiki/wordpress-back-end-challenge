@@ -1,0 +1,47 @@
+/* Like Box */
+.generic-content .like-box {
+    float: right;
+    font-size: 1rem;
+    background-color: #ededed;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    color: red;
+    padding: 10px 10px 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 0 30px 30px;
+    position: relative;
+}
+
+.generic-content .like-box:hover {
+    background-color: #dedede;
+}
+
+.like-count {
+    padding-left: 10px;
+}
+
+.like-box .fa-heart-o {
+    transition: all 0.35s ease-out;
+    position: absolute;
+    left: 10px;
+}
+
+.like-box .fa-heart {
+    left: 10px;
+    transition: all 0.4s ease-out;
+    position: absolute;
+    visibility: hidden;
+    transform: scale(0.2);
+    opacity: 0;
+}
+
+.like-box[data-exists=yes] .fa-heart {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+}
+
+.like-box[data-exists=yes] .fa-heart-o {
+    visibility: hidden;
+    opacity: 0;
+}
