@@ -17,6 +17,8 @@ class Init {
 
 	/**
 	 * Init class.
+	 *
+	 * @return void
 	 */
 	public static function init() {
 		new Setup\Config();

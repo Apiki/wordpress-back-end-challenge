@@ -17,6 +17,8 @@ class Config {
 
 	/**
 	 * Constructor.
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
@@ -24,6 +26,8 @@ class Config {
 
 	/**
 	 * Loads the plugin text domain for translation.
+	 *
+	 * @return void
 	 */
 	public function load_plugin_textdomain() {
 		load_plugin_textdomain( 'wp-back-end-challenge', false, PLUGIN_DIRECTORY_PATH . '/languages' );

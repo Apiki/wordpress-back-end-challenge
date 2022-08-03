@@ -33,6 +33,8 @@ class Favorite {
 
 	/**
 	 * Constructor.
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		$this->user_id = get_current_user_id();

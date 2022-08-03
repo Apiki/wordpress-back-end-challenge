@@ -35,6 +35,8 @@ class JWT {
 	 * Constructor.
 	 *
 	 * @param string|null $secret_key Secret key.
+	 *
+	 * @return void
 	 */
 	public function __construct( ?string $secret_key = null ) {
 		self::$secret_key = $secret_key ?? self::$secret_key;
@@ -85,6 +87,8 @@ class JWT {
 	 * Validate token.
 	 *
 	 * @param string $token Token.
+	 *
+	 * @return object|WP_Error
 	 */
 	public static function validate( string $token ) {
 		try {

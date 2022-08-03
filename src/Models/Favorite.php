@@ -40,6 +40,8 @@ class Favorite {
 
 	/**
 	 * Constructor.
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		global $wpdb, $table_prefix;

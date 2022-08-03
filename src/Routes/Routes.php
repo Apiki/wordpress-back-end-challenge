@@ -23,8 +23,11 @@ namespace App\Routes;
  * @link     https://github.com/luispaiva/back-end-challenge/tree/luis-paiva
  */
 class Routes {
+
 	/**
 	 * Constructor.
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		new Auth();

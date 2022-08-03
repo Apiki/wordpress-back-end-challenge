@@ -39,6 +39,8 @@ class Hooks {
 	 * @param mixed            $result  Anything.
 	 * @param \WP_REST_Server  $server  Server instance.
 	 * @param \WP_REST_Request $request Request used to generate the response.
+	 *
+	 * @return void|WP_Error
 	 */
 	public function rest_pre_dispatch( $result, \WP_REST_Server $server, \WP_REST_Request $request ) {
 

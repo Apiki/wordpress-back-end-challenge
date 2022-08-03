@@ -26,6 +26,8 @@ class Auth {
 
 	/**
 	 * Constructor.
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
@@ -33,6 +35,8 @@ class Auth {
 
 	/**
 	 * Register routes.
+	 *
+	 * @return void
 	 */
 	public function register_routes() {
 		register_rest_route(
