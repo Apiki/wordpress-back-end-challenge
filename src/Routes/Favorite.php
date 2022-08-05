@@ -8,7 +8,7 @@
  * @package  WP_Backend_Challenge
  * @author   Luis Paiva <contato@luispaiva.com.br>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/luispaiva/wordpress-back-end-challenge
+ * @link     https://github.com/luispaiva/wordpress-back-end-challenge/tree/luis-paiva
  */
 
 namespace App\Routes;
@@ -20,7 +20,7 @@ namespace App\Routes;
  * @package  WP_Backend_Challenge
  * @author   Luis Paiva <contato@luispaiva.com.br>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/luispaiva/back-end-challenge/tree/luis-paiva
+ * @link     https://github.com/luispaiva/wordpress-back-end-challenge/tree/luis-paiva
  */
 class Favorite {
 

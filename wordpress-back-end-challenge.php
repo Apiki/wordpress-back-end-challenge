@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     WordPress Back-end Challenge
- * Plugin URI:      https://github.com/luispaiva/wordpress-back-end-challenge
+ * Plugin URI:      https://github.com/luispaiva/wordpress-back-end-challenge/tree/luis-paiva
  * Description:     Desafio para os futuros programadores back-end em WordPress da Apiki.
  * Author:          Luis Paiva
  * Author URI:      https://github.com/luispaiva

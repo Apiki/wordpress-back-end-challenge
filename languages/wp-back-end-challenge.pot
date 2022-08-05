@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-10T04:31:34-03:00\n"
+"POT-Creation-Date: 2022-08-05T07:53:07-03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: wp-back-end-challenge\n"
@@ -19,7 +19,7 @@ msgid "WordPress Back-end Challenge"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/luispaiva/wordpress-back-end-challenge"
+msgid "https://github.com/luispaiva/wordpress-back-end-challenge/tree/luis-paiva"
 msgstr ""
 
 #. Description of the plugin
@@ -42,19 +42,19 @@ msgstr ""
 msgid "Usuário ou senhas inválidos!"
 msgstr ""
 
-#: src/Controllers/Favorite.php:54
+#: src/Controllers/Favorite.php:56
 msgid "Post não encontrado."
 msgstr ""
 
-#: src/Controllers/Favorite.php:67
-#: src/Controllers/Favorite.php:81
+#: src/Controllers/Favorite.php:69
+#: src/Controllers/Favorite.php:83
 msgid "Post favoritado."
 msgstr ""
 
-#: src/Controllers/Favorite.php:78
+#: src/Controllers/Favorite.php:80
 msgid "Remoção de favoritismo."
 msgstr ""
 
-#: src/Routes/Favorite.php:53
+#: src/Routes/Favorite.php:55
 msgid "Você deve estar logado para favoritar este post."
 msgstr ""
