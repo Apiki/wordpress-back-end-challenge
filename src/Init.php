@@ -20,7 +20,7 @@ class Init {
 	 *
 	 * @return void
 	 */
-	public static function init() {
+	public static function init(): void {
 		new Setup\Config();
 		new Hooks\Hooks();
 		new Routes\Routes();

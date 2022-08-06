@@ -38,7 +38,7 @@ class Favorite {
 	 *
 	 * @return void
 	 */
-	public function register_routes() {
+	public function register_routes(): void {
 		register_rest_route(
 			'apiki/challenge',
 			'/favorite/(?P<post_id>[\d]+)',

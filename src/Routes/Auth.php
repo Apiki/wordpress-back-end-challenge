@@ -38,7 +38,7 @@ class Auth {
 	 *
 	 * @return void
 	 */
-	public function register_routes() {
+	public function register_routes(): void {
 		register_rest_route(
 			'apiki/challenge',
 			'/login',

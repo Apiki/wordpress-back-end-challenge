@@ -29,7 +29,7 @@ class Config {
 	 *
 	 * @return void
 	 */
-	public function load_plugin_textdomain() {
+	public function load_plugin_textdomain(): void {
 		load_plugin_textdomain( 'wp-back-end-challenge', false, PLUGIN_DIRECTORY_PATH . '/languages' );
 	}
 
@@ -38,7 +38,7 @@ class Config {
 	 *
 	 * @return void
 	 */
-	public static function activation() {
+	public static function activation(): void {
 		self::create_tables();
 		flush_rewrite_rules();
 	}
@@ -48,7 +48,7 @@ class Config {
 	 *
 	 * @return void
 	 */
-	public static function deactivation() {
+	public static function deactivation(): void {
 		flush_rewrite_rules();
 	}
 
@@ -57,7 +57,7 @@ class Config {
 	 *
 	 * @return void
 	 */
-	public static function uninstall() {
+	public static function uninstall(): void {
 		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 			die;
 		}
@@ -68,7 +68,7 @@ class Config {
 	 *
 	 * @return void
 	 */
-	public static function create_tables() {
+	public static function create_tables(): void {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( self::get_schema() );
 	}
@@ -78,7 +78,7 @@ class Config {
 	 *
 	 * @return string
 	 */
-	private static function get_schema() {
+	private static function get_schema(): string {
 		global $wpdb;
 
 		$collate = $wpdb->get_charset_collate();
@@ -90,7 +90,7 @@ class Config {
 			created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 			updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
-        ) $collate;";
+        ) {$collate};";
 
 		return $tables;
 	}
