@@ -1,0 +1,39 @@
+{
+  "name": "apiki/wordpress-back-end-challenge",
+  "description": "Desafio para os futuros programadores back-end em WordPress da Apiki.",
+  "type": "plugin",
+  "license": "MIT",
+  "require": {
+    "php": ">= 7.4",
+    "firebase/php-jwt": "^5.0.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.4",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+    "wp-coding-standards/wpcs": "^2.3",
+    "php-parallel-lint/php-parallel-lint": "^1.2.0",
+    "pheromone/phpcs-security-audit": "^2.0",
+    "wp-cli/i18n-command": "^2.2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "scripts": {
+    "make-pot": "wp i18n make-pot . languages/wp-back-end-challenge.pot",
+    "lint": "./vendor/bin/phpcs wordpress-back-end-challenge.php src/",
+    "lint:fix": "./vendor/bin/phpcbf wordpress-back-end-challenge.php src/",
+    "security": "phpcs -p --standard=Security wordpress-back-end-challenge.php src/",
+    "check": [
+      "@lint",
+      "@lint:fix",
+      "@security"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

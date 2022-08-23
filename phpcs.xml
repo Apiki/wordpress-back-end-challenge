@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress standard">
+    <rule ref="WordPress">
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+    </rule>
+</ruleset>
