@@ -1,0 +1,10 @@
+{
+    "name": "mazza/wordpress-back-end-challenge",
+    "description": "Plugin to like a wordpress post",
+    "autoload": {
+        "psr-4": {
+            "Mazza\\WordpressBackEndChallenge\\": "src/"
+        }
+    },
+    "require": {}
+}
