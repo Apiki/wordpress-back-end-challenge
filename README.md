@@ -4,24 +4,14 @@ Desafio para os futuros programadores back-end em WordPress da Apiki.
 
 ## Introdução
 
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
+- URL: http://localhost:10008/wp-json/api-like/v1/like
+  - Para dar Like: Método POST passando USER e POST como parâmetro e os ID'S como value.
+  - Para dar unlike Método DELETE passando USER e POST como parâmetro e os ID'S como value.
 
-**Especifícações**:
+Não foi criado nenhum tipo de autenticação, seja JWT, Bearer Token etc. Então para ver as funcionalidades like/unlike será preciso remover a função **is_user_logged_in()** caso contrário terá o retorno não autorizado 401.
 
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
+Também não foi criado nenhum visual, criei apenas me baseando em uma aplicação wordpress headless.
 
-## Instruções
+Outra opção, é instalar algum plugin com funcionalidades de autenticação por REST para realização do teste no POSTMAN, por ex. Sem ter que remover a função **is_user_logged_in()**.
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-
-## Pré-requisitos
-
-* PHP >= 5.6
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
+Eu poderia ter criado a parte visual no front do wordpress, ou até mesmo autenticação JWT/BEARER TOKEN, mas acredito que esse não era o foco, então tentei simplificar ao máximo.
