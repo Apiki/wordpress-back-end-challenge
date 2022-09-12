@@ -1,0 +1,81 @@
+.mp-row {
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.mp-row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.mp-col-md-6 {
+    /* background: #0073aa; */
+    width: 50%;
+    float: left;
+    position: relative;
+}
+
+.mp_btn_fav {
+    background: none;
+    border: 1px solid rgb(0, 107, 9);
+    border-radius: 5px;
+    color: rgb(0, 107, 9);
+    padding: 5px 15px;
+}
+
+.mp_permalink {
+    background: none;
+    border: none;
+}
+
+.mp_permalink:hover {
+    cursor: pointer;
+}
+
+.mp_permalink_primary {
+    color: #0073aa;
+}
+
+.mp_permalink_primary:hover {
+    color: #135e96;
+}
+
+.mp_permalink_danger {
+    color: rgb(172, 7, 7);
+}
+
+.mp_permalink_danger:hover {
+    color: rgb(143, 3, 3);
+}
+
+.mp_loading_body {
+    align-items: center;
+    display: none;
+    justify-content: center;
+    min-height: 100vh;
+    transform: scale(5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    background: #fff;
+}
+
+.mp_loading {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #51d4db;
+    height: 50px;
+    width: 50px;
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
