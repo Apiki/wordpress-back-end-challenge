@@ -1,0 +1,83 @@
+.card-post {
+    display: inline-block;
+    padding: 0 15px;
+    @media screen and (max-width: 1023px) {
+		margin-top: 54px;
+	}
+	@media screen and (min-width: 1024px) {
+		margin-top: 84px;
+	}
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        box-shadow: rgba(0, 0, 0, .1) 0 1px 0;
+        transition: box-shadow 0.2s;
+        will-change: box-shadow;
+        .card-post:hover & {
+            box-shadow: 0 10px 16px rgba(0, 0, 0, .13), 0 6px 6px rgba(0, 0, 0, .19);
+        }
+    }
+
+    &__figure {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        &.-silver {
+            background-color: #ccc;
+            min-height: 180px;
+            img {
+                width: 170px;
+            }
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    &__title {
+        font-weight: 700;
+    }
+
+    &__link{
+        display: inline-block;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: $main-color;
+        color: #fff;
+        transition: background-color 0.2s;
+        will-change: background-color;
+        &:hover {
+            background-color: $bg-secundary;
+        }
+    }
+    
+    &__remove {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #EF2929;
+        background-color: #EF2929;
+        color: #fff;
+        transition: background-color, color 0.2s;
+        will-change: background-color, color;
+        &[disabled],
+        &:hover {
+            background-color: #fff;
+            color: #EF2929;
+        }
+
+        .hide-span {
+            display: none;
+        }
+    }
+
+
+}

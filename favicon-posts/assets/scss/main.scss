@@ -1,0 +1,10 @@
+//Reset
+@import 'reset/_variables';
+@import 'reset/_grid';
+
+
+// Agrupa todos os blocos do projeto
+@import 'blocks/_favicon-action';
+@import 'blocks/_posts-list';
+@import 'blocks/_card-post';
+@import 'blocks/_form-login';

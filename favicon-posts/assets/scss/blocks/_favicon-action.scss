@@ -1,0 +1,40 @@
+.favicon-action {
+    display: flex;
+    flex-direction: column;
+    
+    position: fixed;
+    right: 0px;
+    top: 50%;
+    z-index: 99;
+
+
+    &__add,
+    &__rmm,
+    &__loading {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 1.6rem;
+        background-color: $light-main;
+        border: 1px solid;
+        border-right: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+
+        &.hide {
+            display: none;
+        }
+    }
+    &__add {
+        color: $main-color;
+        border-color: $main-color;
+    }
+    &__rmm {
+        color: $bg-secundary;
+        border-color: $bg-secundary;
+    }
+    &__loading {
+        color: $bg_footer;
+        border-color: $bg_footer;
+    }
+}
