@@ -1,0 +1,39 @@
+.form-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 26px 24px 34px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+
+    &__label{
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    &__input {
+        height: 40px;
+        margin: 10px 0;
+        border: 1px solid $main-color;
+        border-radius: 10px;
+    }
+
+    &__button {
+        height: 40px;
+        margin-top: 10px;
+        border: none;
+        background-color: $main-color;
+        color: $light-main;
+        border-radius: 10px;
+        transition: background-color 0.2s;
+        will-change: background-color;
+
+        &:hover {
+            background-color: $bg-secundary;
+        }
+    }
+}
