@@ -1,0 +1,11 @@
+.like-cta-button {
+    background-color: gray;
+    color: #fff;
+    max-width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.like-cta-button.liked {
+    background-color: red;
+}
