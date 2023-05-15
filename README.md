@@ -1,27 +1,15 @@
-# WordPress Back-end Challenge
+﻿# plugin_favoritar
+ 
+INSTRUÇÕES
+COPIAR O DIRETÓRIO FAVORITOS PARA A PASTA PLUGINS DO WORDPRESS
 
-Desafio para os futuros programadores back-end em WordPress da Apiki.
+ENDPOINT FAVORITAR 
+http://localhost:81/wordpress/wp-json/favoritos/v1/favoritar/1
 
-## Introdução
+ENDPOINT DESFAVORITAR
+http://localhost:81/wordpress/wp-json/favoritos/v1/desfavoritar/1
 
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
+GERAR TOKEN JWT PARA TEST NO POSTMAN
+http://localhost:81/wordpress/wp-content/plugins/favoritos/gerar_jwt.php
 
-**Especifícações**:
-
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
-
-## Instruções
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-
-## Pré-requisitos
-
-* PHP >= 5.6
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
+CABEÇALHOS: Authorization Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwidXNlcl9sb2dpbiI6ImFkbWluIn0.dK3dN8RK6enme7ZpAnt_k8VJAwLzgaUH6il_2ruHkA4
