@@ -1,27 +1,10 @@
-# WordPress Back-end Challenge
+##Algumas informações sobre o teste
+->Requisitos: Para testar o plugin é necessário instalar no WP o Plugin "JWT Authentication for WP REST API" e gerar o token com o endpoint "/wp-json/jwt-auth/v1/token", passando em fields o "username" e o "password", e o token gerado passado na hora da requisição como Bearer Token;
+->Adicionar no arquivo wp-config.php: "define('JWT_AUTH_SECRET_KEY', 'sua chave aleatoria(pode ser qualquer valor)');" e "define('JWT_AUTH_CORS_ENABLE', true);"
 
-Desafio para os futuros programadores back-end em WordPress da Apiki.
+#EndPoint
+-> '/wp-json/testewp/v1/like'
+- O token Bearer é necessário.
+- Parâmetros necessários: 'post_id'.
 
-## Introdução
-
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
-
-**Especifícações**:
-
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
-
-## Instruções
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-
-## Pré-requisitos
-
-* PHP >= 5.6
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
+-> Lógica: Se uma curtida já tiver sido adicionada à um post por um determinado usuário, da próxima vez que esse mesmo usuário fizer a requisição será deletada a curtida, funcionando o like e o unlike.
