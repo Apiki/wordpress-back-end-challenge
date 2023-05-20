@@ -75,11 +75,6 @@ function register_routes_like_post(){
         'callback' => 'like_post_user',
         'permission_callback' => 'permission_callback'
     ));
-    register_rest_route('testewp/v1', 'unlike', array(
-        'methods' => 'POST',
-        'callback' => 'unlike_post_user',
-        'permission_callback' => 'permission_callback'
-    ));
 
 }
     function permission_callback() {
