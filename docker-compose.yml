@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  db:
+    container_name: fav-posts-db
+    image: mariadb:10.6.4-focal
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    ports:
+      - 3306:3306
+  wp:
+    image: wordpress:6-php8.0
+    ports:
+      - 80:80
+    restart: always
+    volumes: 
+      - wp_data:/var/www/html
+      - ${PWD}:/var/www/html/wp-content/plugins/fav-posts
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    depends_on:
+      - db
+  wpcli:
+    container_name: fav-posts-cli
+    image: wordpress:cli
+    user: 1000:1000
+    command: tail -f /dev/null
+    volumes:
+      - wp_data:/var/www/html
+      - ${PWD}:/var/www/html/wp-content/plugins/fav-posts
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      
+    depends_on:
+      - db
+volumes:
+  db_data:
+  wp_data:
+
+  
+    
