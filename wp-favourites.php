@@ -27,7 +27,25 @@ class WP_Favourites {
      * Método de ativação do Plugin
      */
     public static function activate() {
-        // Adicionar código de ativação aqui, como criar a tabela personalizada no banco de dados
+        global $wpdb;
+
+        // Nome da tabela personalizada
+        $table_name = $wpdb->prefix . 'wp_favourites';
+
+        // SQL para criar a tabela
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT NOT NULL AUTO_INCREMENT,
+            user_id BIGINT NOT NULL,
+            post_id BIGINT NOT NULL,
+            PRIMARY KEY (id),
+            UNIQUE KEY unique_favourite (user_id, post_id)
+        ) $wpdb->get_charset_collate();";
+
+        // Carregar o arquivo upgrade.php para utilizar o dbDelta
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+        // Executar a consulta SQL usando dbDelta
+        dbDelta( $sql );
     }
 
     /**
