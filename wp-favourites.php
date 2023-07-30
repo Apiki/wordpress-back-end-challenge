@@ -34,7 +34,14 @@ class WP_Favourites {
      * Método de desativação do Plugin
      */
     public static function deactivate() {
-        // Adicionar código de desativação aqui, como remover a tabela personalizada do banco de dados
+        // Adicionar código de desativação aqui, se necessário
+    }
+
+    /**
+     * Método de desinstalação do Plugin
+     */
+    public static function uninstall() {
+        self::remove_custom_table();
     }
 
     /**
@@ -63,6 +70,22 @@ class WP_Favourites {
     }
 
     /**
+     * Método para remover a tabela personalizada do banco de dados
+     */
+    private static function remove_custom_table() {
+        global $wpdb;
+
+        // Nome da tabela personalizada
+        $table_name = $wpdb->prefix . 'wp_favourites';
+
+        // SQL para remover a tabela
+        $sql = "DROP TABLE IF EXISTS $table_name;";
+
+        // Executar a consulta SQL usando a função dbDelta customizada
+        self::custom_dbDelta( $sql );
+    }
+
+    /**
      * Função customizada para executar a consulta SQL usando dbDelta
      */
     private static function custom_dbDelta( $sql ) {
@@ -74,6 +97,7 @@ class WP_Favourites {
 // Instanciar a classe principal do Plugin
 $wp_favourites_plugin = new WP_Favourites();
 
-// Registrar os hooks de ativação e desativação do Plugin
+// Registrar os hooks de ativação, desativação e desinstalação do Plugin
 register_activation_hook( __FILE__, array( 'WP_Favourites', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'WP_Favourites', 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( 'WP_Favourites', 'uninstall' ) );
