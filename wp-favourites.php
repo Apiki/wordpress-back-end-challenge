@@ -27,25 +27,7 @@ class WP_Favourites {
      * Método de ativação do Plugin
      */
     public static function activate() {
-        global $wpdb;
-
-        // Nome da tabela personalizada
-        $table_name = $wpdb->prefix . 'wp_favourites';
-
-        // SQL para criar a tabela
-        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-            id INT NOT NULL AUTO_INCREMENT,
-            user_id BIGINT NOT NULL,
-            post_id BIGINT NOT NULL,
-            PRIMARY KEY (id),
-            UNIQUE KEY unique_favourite (user_id, post_id)
-        ) $wpdb->get_charset_collate();";
-
-        // Carregar o arquivo upgrade.php para utilizar o dbDelta
-        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
-        // Executar a consulta SQL usando dbDelta
-        dbDelta( $sql );
+        self::create_custom_table();
     }
 
     /**
@@ -53,6 +35,39 @@ class WP_Favourites {
      */
     public static function deactivate() {
         // Adicionar código de desativação aqui, como remover a tabela personalizada do banco de dados
+    }
+
+    /**
+     * Método para criar a tabela personalizada no banco de dados
+     */
+    private static function create_custom_table() {
+        global $wpdb;
+
+        // Nome da tabela personalizada
+        $table_name = $wpdb->prefix . 'wp_favourites';
+
+        // SQL para criar a tabela
+        $charset_collate = $wpdb->get_charset_collate();
+
+        // Montar a consulta SQL para criar a tabela
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT NOT NULL AUTO_INCREMENT,
+            user_id BIGINT NOT NULL,
+            post_id BIGINT NOT NULL,
+            PRIMARY KEY (id),
+            UNIQUE KEY unique_favourite (user_id, post_id)
+        ) $charset_collate;";
+
+        // Executar a consulta SQL usando a função dbDelta customizada
+        self::custom_dbDelta( $sql );
+    }
+
+    /**
+     * Função customizada para executar a consulta SQL usando dbDelta
+     */
+    private static function custom_dbDelta( $sql ) {
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        dbDelta( $sql );
     }
 }
 
