@@ -29,6 +29,8 @@ class WP_Favourites {
      */
     public static function activate() {
         self::create_custom_table();
+        $favourites_controller = new FavouritesController();
+        $favourites_controller->register_routes(); // Registrar as rotas da API do plugin
     }
 
     /**
@@ -92,34 +94,6 @@ class WP_Favourites {
     private static function custom_dbDelta( $sql ) {
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta( $sql );
-    }
-
-    /**
-     * Método para registrar as rotas da WP REST API
-     */
-    public function register_api_routes() {
-        $favourites_controller = new Favourites_Controller();
-
-        // Rota para favoritar um post
-        register_rest_route( 'wp-favourites/v1', '/favourite/(?P<post_id>\d+)', array(
-            'methods'  => 'POST',
-            'callback' => array( $favourites_controller, 'favourite_post' ),
-            'permission_callback' => array( $this, 'check_user_logged_in' ),
-        ) );
-
-        // Rota para desfavoritar um post
-        register_rest_route( 'wp-favourites/v1', '/unfavourite/(?P<post_id>\d+)', array(
-            'methods'  => 'POST',
-            'callback' => array( $favourites_controller, 'unfavourite_post' ),
-            'permission_callback' => array( $this, 'check_user_logged_in' ),
-        ) );
-    }
-
-    /**
-     * Método para verificar se o usuário está logado
-     */
-    public function check_user_logged_in() {
-        return is_user_logged_in();
     }
 }
 
