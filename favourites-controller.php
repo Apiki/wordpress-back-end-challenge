@@ -49,7 +49,7 @@ class FavouritesController {
 
         // Verificar se o post já está favoritado pelo usuário
         if ( self::is_post_favourited( $user_id, $post_id ) ) {
-            return new WP_Error( 'post_already_favourited', esc_html__( 'This post is already favourited by the user.', 'wp-favourites' ), array( 'status' => 400 ) );
+            return rest_ensure_response( array( 'error' => true, 'message' => 'This post is already favourited by the user.' ) );
         }
 
         // Adicionar o post aos favoritos do usuário na tabela personalizada
@@ -63,7 +63,7 @@ class FavouritesController {
             )
         );
 
-        return new WP_REST_Response( array( 'message' => 'Post favourited successfully.' ), 200 );
+        return rest_ensure_response( array( 'success' => true, 'message' => 'Post favourited successfully.' ) );
     }
 
     /**
@@ -75,7 +75,7 @@ class FavouritesController {
 
         // Verificar se o post está favoritado pelo usuário
         if ( ! self::is_post_favourited( $user_id, $post_id ) ) {
-            return new WP_Error( 'post_not_favourited', esc_html__( 'This post is not favourited by the user.', 'wp-favourites' ), array( 'status' => 400 ) );
+            return rest_ensure_response( array( 'error' => true, 'message' => 'This post is not favourited by the user.' ) );
         }
 
         // Remover o post dos favoritos do usuário na tabela personalizada
@@ -89,7 +89,7 @@ class FavouritesController {
             )
         );
 
-        return new WP_REST_Response( array( 'message' => 'Post unfavourited successfully.' ), 200 );
+        return rest_ensure_response( array( 'success' => true, 'message' => 'Post unfavourited successfully.' ) );
     }
 
     /**
