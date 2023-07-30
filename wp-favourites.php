@@ -72,7 +72,7 @@ class WP_Favourites {
     /**
      * Método para remover a tabela personalizada do banco de dados
      */
-    private static function remove_custom_table() {
+    public static function remove_custom_table() {
         global $wpdb;
 
         // Nome da tabela personalizada
@@ -81,8 +81,8 @@ class WP_Favourites {
         // SQL para remover a tabela
         $sql = "DROP TABLE IF EXISTS $table_name;";
 
-        // Executar a consulta SQL usando a função dbDelta customizada
-        self::custom_dbDelta( $sql );
+        // Executar a consulta SQL usando $wpdb->query()
+        $wpdb->query( $sql );
     }
 
     /**
