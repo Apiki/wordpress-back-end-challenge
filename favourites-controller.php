@@ -47,8 +47,21 @@ class FavouritesController {
         $user_id = get_current_user_id();
         $post_id = $request['post_id'];
 
-        // Lógica para favoritar o post e persistir os dados na tabela personalizada
-        // ...
+        // Verificar se o post já está favoritado pelo usuário
+        if ( self::is_post_favourited( $user_id, $post_id ) ) {
+            return new WP_Error( 'post_already_favourited', esc_html__( 'This post is already favourited by the user.', 'wp-favourites' ), array( 'status' => 400 ) );
+        }
+
+        // Adicionar o post aos favoritos do usuário na tabela personalizada
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'wp_favourites';
+        $wpdb->insert(
+            $table_name,
+            array(
+                'user_id' => $user_id,
+                'post_id' => $post_id,
+            )
+        );
 
         return new WP_REST_Response( array( 'message' => 'Post favourited successfully.' ), 200 );
     }
@@ -60,9 +73,39 @@ class FavouritesController {
         $user_id = get_current_user_id();
         $post_id = $request['post_id'];
 
-        // Lógica para desfavoritar o post e remover os dados da tabela personalizada
-        // ...
+        // Verificar se o post está favoritado pelo usuário
+        if ( ! self::is_post_favourited( $user_id, $post_id ) ) {
+            return new WP_Error( 'post_not_favourited', esc_html__( 'This post is not favourited by the user.', 'wp-favourites' ), array( 'status' => 400 ) );
+        }
+
+        // Remover o post dos favoritos do usuário na tabela personalizada
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'wp_favourites';
+        $wpdb->delete(
+            $table_name,
+            array(
+                'user_id' => $user_id,
+                'post_id' => $post_id,
+            )
+        );
 
         return new WP_REST_Response( array( 'message' => 'Post unfavourited successfully.' ), 200 );
+    }
+
+    /**
+     * Método para verificar se um post está favoritado pelo usuário
+     */
+    private static function is_post_favourited( $user_id, $post_id ) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'wp_favourites';
+        $result = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(*) FROM $table_name WHERE user_id = %d AND post_id = %d",
+                $user_id,
+                $post_id
+            )
+        );
+
+        return (int) $result > 0;
     }
 }
