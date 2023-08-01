@@ -11,6 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Incluir o arquivo favourites-controller.php para registrar as rotas da API
+require_once plugin_dir_path( __FILE__ ) . 'favourites-controller.php';
+
 /**
  * Classe principal do Plugin WP Favourites
  */
@@ -21,7 +24,8 @@ class WP_Favourites {
      */
     public function __construct() {
         // Registrar os hooks necessários do WordPress aqui
-        add_action( 'rest_api_init', array( $this, 'register_api_routes' ) );
+        $favourites_controller = new FavouritesController();
+        add_action( 'rest_api_init', array( $favourites_controller, 'register_routes' ) );
     }
 
     /**
@@ -29,8 +33,6 @@ class WP_Favourites {
      */
     public static function activate() {
         self::create_custom_table();
-        $favourites_controller = new FavouritesController();
-        $favourites_controller->register_routes(); // Registrar as rotas da API do plugin
     }
 
     /**
