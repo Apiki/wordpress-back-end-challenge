@@ -1,9 +1,11 @@
 <?php
 /**
- * Plugin Name: WP Favourites
- * Description: Allows users to favourite posts using the WP REST API.
- * Version: 1.0.0
- * Author: Itamar Silva
+ * Nome do Plugin: WP Favourites
+ * Descrição: Permite que os usuários favoritem posts usando a API REST do WordPress.
+ * Versão: 1.0.0
+ * Autor: Itamar Silva
+ *
+ * @package WP_Favourites
  */
 
 // Impede o acesso direto ao arquivo
@@ -15,42 +17,75 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'favourites-controller.php';
 
 /**
- * Classe principal do Plugin WP Favourites
+ * Classe principal do Plugin WP Favourites.
+ *
+ * Esta classe inicializa o plugin e trata as ações de ativação,
+ * desativação e desinstalação do plugin. Além disso, cria uma tabela
+ * personalizada no banco de dados para armazenar dados de posts favoritos
+ * e registra as rotas da API usando a classe FavouritesController.
+ *
+ * @since 1.0.0
  */
 class WP_Favourites {
 
     /**
-     * Construtor da classe
+     * Construtor da classe WP_Favourites.
+     *
+     * Inicializa o plugin e registra os hooks necessários do WordPress.
+     *
+     * @since 1.0.0
      */
     public function __construct() {
-        // Registrar os hooks necessários do WordPress aqui
+        // Criar uma instância da classe FavouritesController para gerenciar as rotas da API
         $favourites_controller = new FavouritesController();
+    
+        // Registrar os hooks necessários do WordPress para a API REST do plugin
         add_action( 'rest_api_init', array( $favourites_controller, 'register_routes' ) );
     }
 
     /**
-     * Método de ativação do Plugin
+     * Método para ativar o plugin.
+     *
+     * Este método é chamado quando o plugin é ativado e cria
+     * uma tabela personalizada no banco de dados para armazenar dados
+     * de posts favoritos.
+     *
+     * @since 1.0.0
      */
     public static function activate() {
         self::create_custom_table();
     }
 
     /**
-     * Método de desativação do Plugin
+     * Método para desativar o plugin.
+     *
+     * Este método é chamado quando o plugin é desativado.
+     *
+     * @since 1.0.0
      */
     public static function deactivate() {
         // Adicionar código de desativação aqui, se necessário
     }
 
     /**
-     * Método de desinstalação do Plugin
+     * Método para desinstalar o plugin.
+     *
+     * Este método é chamado quando o plugin é desinstalado e
+     * remove a tabela personalizada do banco de dados.
+     *
+     * @since 1.0.0
      */
     public static function uninstall() {
         self::remove_custom_table();
     }
 
     /**
-     * Método para criar a tabela personalizada no banco de dados
+     * Método para criar uma tabela personalizada no banco de dados.
+     *
+     * Este método é usado para criar uma tabela personalizada para
+     * armazenar dados de posts favoritos, como o ID do usuário e o ID do post.
+     *
+     * @since 1.0.0
      */
     private static function create_custom_table() {
         global $wpdb;
@@ -75,7 +110,11 @@ class WP_Favourites {
     }
 
     /**
-     * Método para remover a tabela personalizada do banco de dados
+     * Método para remover a tabela personalizada do banco de dados.
+     *
+     * Este método é usado para remover a tabela personalizada quando o plugin é desinstalado.
+     *
+     * @since 1.0.0
      */
     public static function remove_custom_table() {
         global $wpdb;
@@ -91,7 +130,13 @@ class WP_Favourites {
     }
 
     /**
-     * Função customizada para executar a consulta SQL usando dbDelta
+     * Função customizada para executar uma consulta SQL usando dbDelta.
+     *
+     * Esta função é usada para executar a consulta SQL para criar a tabela personalizada.
+     *
+     * @param string $sql A consulta SQL para executar.
+     *
+     * @since 1.0.0
      */
     private static function custom_dbDelta( $sql ) {
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
