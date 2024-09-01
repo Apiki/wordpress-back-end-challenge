@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "d0aa2c70-b123-4836-8484-701ee99c72af",
+		"name": "Plugin Favoritar Posts",
+		"description": "Usando a WP Rest API favorite, desfavorite e liste os posts favoritados.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7736609",
+		"_collection_link": "https://grey-space-336270.postman.co/workspace/Desafio-APIKI~0befd4d9-768c-4b58-b81d-11b2d65b7a80/collection/7736609-d0aa2c70-b123-4836-8484-701ee99c72af?action=share&source=collection_link&creator=7736609"
+	},
+	"item": [
+		{
+			"name": "Listar Posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/wp-json/plugin-fav-post/listar-posts",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wp-json",
+						"plugin-fav-post",
+						"listar-posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Favoritar Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Desfavoritar Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://wp-plugin-favoritar-posts.ddev.site"
+		}
+	]
+}
