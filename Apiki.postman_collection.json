@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "36fe6f32-50e4-408c-bc17-a4df3359024d",
+		"name": "Apiki",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38156146"
+	},
+	"item": [
+		{
+			"name": "Login Teste APIKI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parseia a resposta como JSON",
+							"var jsonData = pm.response.json();",
+							"",
+							"// Verifica se o campo \"token\" existe na resposta",
+							"if (jsonData.token) {",
+							"    // Define a variável global \"auth_token\" com o valor do token",
+							"    pm.globals.set(\"auth_token\", jsonData.token);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_login\": \"mateus\",\n    \"user_password\": \"$fnzFI&w%H2PtUkjnQ\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/wp-json/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"wp-json",
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Favoritar Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"post_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/wp-json/api/favorite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"wp-json",
+						"api",
+						"favorite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout Teste APIKI",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_login\": \"mateus\",\n    \"user_password\": \"$fnzFI&w%H2PtUkjnQ\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/wp-json/api/logoff",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"wp-json",
+						"api",
+						"logoff"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
