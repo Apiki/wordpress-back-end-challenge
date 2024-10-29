@@ -1,0 +1,13 @@
+{
+    "name": "andre-nascimento/favoritar-posts",
+    "description": "Plugin para favoritar posts no WordPress.",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "LikePosts\\": "includes/"
+        }
+    },
+    "require": {
+        "php": ">=7.4"
+    }
+}
