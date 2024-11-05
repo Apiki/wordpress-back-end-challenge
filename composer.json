@@ -1,0 +1,19 @@
+{
+    "name": "alexs/favorite-unfavorite",
+    "description": "API",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alexs\\FavoriteUnfavorite\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alexsanderkafka",
+            "email": "alexsanderkafka2001alex@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
