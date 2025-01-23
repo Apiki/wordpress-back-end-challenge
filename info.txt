@@ -1,0 +1,31 @@
+creating plugin => C:\xampp\htdocs\wordpress\wp-content\plugins => Apiki-Favorites\apiki-favorites.php
+
+added this plugin For Authentication: JWT Authentication for WP-API
+
+added this code to wp-config.php:
+
+...
+define('JWT_AUTH_SECRET_KEY', '7Yqq05YKIlMxscXbgYh2kFNN_zs8GgTH1wuX-rfBDRT9o_RiajB5WfIAFH_Wwl5onQ6lXVylt23H_K-M6uKNYQ');
+define('JWT_AUTH_CORS_ENABLE', true);
+
+before this line:
+/* That's all, stop editing! Happy publishing. */
+
+
+
+ * First: we need to login: 
+ * POST => http://localhost/wordpress/wp-json/jwt-auth/v1/token
+ * {
+ * "username": "user",
+ * "password": "password"
+ * }
+ * then we receive a token
+ * Second: sending a header named: Authorization: Bearer {token} with the below APIs
+
+Apiki-Favorites plug-in APIs:
+adds     favorite  POST   => http://localhost/wordpress/wp-json/apiki/v2/favorites?post_id=1
+removes  favorite  DELETE => http://localhost/wordpress/wp-json/apiki/v2/favorites?post_id=1
+gets all favorites GET    => http://localhost/wordpress/wp-json/apiki/v2/favorites
+
+
+
