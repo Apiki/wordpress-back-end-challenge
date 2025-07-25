@@ -1,0 +1,117 @@
+/**
+ * WP Favorites Plugin Styles
+ */
+
+.wp-favorites-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #0073aa;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.wp-favorites-button:hover {
+    background: #005a87;
+    color: white;
+    text-decoration: none;
+}
+
+.wp-favorites-button.favorited {
+    background: #d63638;
+}
+
+.wp-favorites-button.favorited:hover {
+    background: #b32d2e;
+}
+
+.wp-favorites-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.wp-favorites-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.wp-favorites-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.wp-favorites-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    color: white;
+    z-index: 9999;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: wp-favorites-slide-in 0.3s ease;
+}
+
+.wp-favorites-message.success {
+    background: #46b450;
+}
+
+.wp-favorites-message.error {
+    background: #dc3232;
+}
+
+@keyframes wp-favorites-slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading state */
+.wp-favorites-button.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.wp-favorites-button.loading .wp-favorites-icon {
+    animation: wp-favorites-spin 1s linear infinite;
+}
+
+@keyframes wp-favorites-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .wp-favorites-button {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .wp-favorites-message {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        font-size: 13px;
+    }
+} 
