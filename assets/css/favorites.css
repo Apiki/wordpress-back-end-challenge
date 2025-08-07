@@ -1,0 +1,283 @@
+/* WordPress Backend Challenge - Favorites CSS */
+
+/* Botão de favorito */
+.wpb-favorite-button {
+    display: inline-block;
+    background: #0073aa;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+.wpb-favorite-button:hover {
+    background: #005a87;
+    color: white;
+    text-decoration: none;
+}
+
+.wpb-favorite-button.favorited {
+    background: #dc3232;
+}
+
+.wpb-favorite-button.favorited:hover {
+    background: #a00;
+}
+
+.wpb-favorite-button.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Ícones para os botões */
+.wpb-favorite-button:before {
+    content: "♡";
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.wpb-favorite-button.favorited:before {
+    content: "♥";
+}
+
+/* Feedback de ações */
+.wpb-feedback {
+    position: fixed;
+    top: 32px;
+    right: 20px;
+    z-index: 9999;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.wpb-feedback-success {
+    background: #46b450;
+    color: white;
+}
+
+.wpb-feedback-error {
+    background: #dc3232;
+    color: white;
+}
+
+/* Contador de favoritos */
+.wpb-favorites-count {
+    display: inline-block;
+    background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #666;
+    margin-left: 10px;
+}
+
+.wpb-favorites-count:before {
+    content: "♥ ";
+    color: #dc3232;
+}
+
+/* Lista de favoritos (para página de admin) */
+.wpb-favorites-list {
+    margin-top: 20px;
+}
+
+.wpb-favorite-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background: white;
+}
+
+.wpb-favorite-item .user-info {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.wpb-favorite-item .post-info {
+    flex: 2;
+    margin-right: 15px;
+}
+
+.wpb-favorite-item .date-info {
+    flex: 1;
+    text-align: right;
+    color: #666;
+    font-size: 12px;
+}
+
+.wpb-favorite-item .user-info strong {
+    color: #0073aa;
+}
+
+.wpb-favorite-item .post-info a {
+    text-decoration: none;
+    color: #333;
+}
+
+.wpb-favorite-item .post-info a:hover {
+    color: #0073aa;
+}
+
+/* Página de favoritos do usuário */
+.wpb-user-favorites {
+    margin: 20px 0;
+}
+
+.wpb-user-favorites h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.wpb-user-favorites .no-favorites {
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .wpb-favorite-button {
+        display: block;
+        text-align: center;
+        margin: 15px 0;
+    }
+    
+    .wpb-feedback {
+        right: 10px;
+        left: 10px;
+        top: 46px;
+    }
+    
+    .wpb-favorite-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .wpb-favorite-item .user-info,
+    .wpb-favorite-item .post-info,
+    .wpb-favorite-item .date-info {
+        flex: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .wpb-favorite-item .date-info {
+        text-align: left;
+    }
+}
+
+/* Integração com temas */
+.entry-content .wpb-favorite-button {
+    margin-top: 20px;
+}
+
+/* Estados hover e focus melhorados */
+.wpb-favorite-button:focus {
+    outline: 2px solid #0073aa;
+    outline-offset: 2px;
+}
+
+.wpb-favorite-button:active {
+    transform: translateY(1px);
+}
+
+/* Animações */
+@keyframes wpb-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.wpb-favorite-button.favorited {
+    animation: wpb-pulse 0.3s ease-in-out;
+}
+
+/* Shortcode de favoritos do usuário */
+.wpb-user-favorites {
+    margin: 20px 0;
+}
+
+.wpb-favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.wpb-favorite-post {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wpb-favorite-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wpb-favorite-post h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.wpb-favorite-post h4 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.wpb-favorite-post h4 a:hover {
+    color: #0073aa;
+}
+
+.wpb-favorite-post .post-date {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.wpb-favorite-post .post-excerpt {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.wpb-favorite-post .read-more {
+    color: #0073aa;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.wpb-favorite-post .read-more:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade para shortcode */
+@media (max-width: 768px) {
+    .wpb-favorites-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .wpb-favorite-post {
+        padding: 15px;
+    }
+}
