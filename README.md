@@ -1,27 +1,37 @@
-# WordPress Back-end Challenge
+# Favorite Posts
 
-Desafio para os futuros programadores back-end em WordPress da Apiki.
+Plugin WordPress para favoritar posts via REST API.
 
-## Introdução
+## Descrição
+Este plugin permite que usuários autenticados marquem ou desmarquem posts como favoritos utilizando uma rota customizada na REST API do WordPress. Os favoritos são armazenados em uma tabela personalizada no banco de dados.
 
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
+## Instalação
+1. Copie a pasta `favorite-posts` para o diretório `wp-content/plugins` do seu WordPress.
+2. Ative o plugin pelo painel de administração do WordPress.
 
-**Especifícações**:
+## Como funciona
+- Cria a tabela `wp_favorite_posts` para armazenar os favoritos (usuário x post).
+- Disponibiliza uma rota na REST API para favoritar/desfavoritar posts.
+- Apenas usuários autenticados podem utilizar a funcionalidade.
 
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
+## Endpoints da API
 
-## Instruções
+### Favoritar/Desfavoritar Post
+- **Endpoint:** `/wp-json/favorite-posts/v1/toggle/{post_id}`
+- **Método:** `POST`
+- **Autenticação:** Necessária (usuário logado)
+- **Parâmetros:**
+	- `post_id` (na URL): ID do post a ser favoritado/desfavoritado
+- **Resposta:**
+	- `{ "status": "added" }` se o post foi favoritado
+	- `{ "status": "removed" }` se o post foi removido dos favoritos
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
+#### Exemplo de requisição
+```bash
+curl -X POST \
+	-H "Authorization: Bearer <token>" \
+	https://seusite.com/wp-json/favorite-posts/v1/toggle/123
+```
 
-## Pré-requisitos
-
-* PHP >= 5.6
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
+## Autor
+Pedro Marcusso
