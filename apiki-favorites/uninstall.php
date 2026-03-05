@@ -8,6 +8,5 @@ global $wpdb;
 
 $table_name = $wpdb->prefix . 'apiki_favorites';
 
-// Cuidado: em produção, às vezes não se remove dados.
-// Mas para o desafio, faz sentido limpar.
+// Don't do this in production.
 $wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );

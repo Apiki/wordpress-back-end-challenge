@@ -16,7 +16,7 @@ class Apiki_Favorites_REST_Controller {
     }
 
     /**
-     * Registra as rotas da REST API.
+     * Registers the REST API routes.
      */
     public function register_routes() {
         register_rest_route(
@@ -55,7 +55,7 @@ class Apiki_Favorites_REST_Controller {
             ]
         );
 
-        // Opcional: rota para checar se um post específico está favoritado
+        // Optional: route to check if a specific post is favorited.
         register_rest_route(
             APIKI_FAV_REST_NAMESPACE,
             '/favorites/check',
@@ -75,7 +75,7 @@ class Apiki_Favorites_REST_Controller {
     }
 
     /**
-     * Garante que o usuário esteja logado.
+     * Ensures the user is logged in.
      */
     public function permissions_check( WP_REST_Request $request ) {
         if ( ! is_user_logged_in() ) {
@@ -90,7 +90,7 @@ class Apiki_Favorites_REST_Controller {
     }
 
     /**
-     * Valida se o post existe.
+     * Validates if the post exists.
      */
     public function validate_post_id( $param, WP_REST_Request $request, $key ) {
         $post = get_post( (int) $param );
@@ -99,7 +99,7 @@ class Apiki_Favorites_REST_Controller {
 
     /**
      * GET /favorites
-     * Lista os posts favoritados do usuário logado.
+     * Lists the posts favorited by the logged-in user.
      */
     public function get_favorites( WP_REST_Request $request ) {
         $user_id  = get_current_user_id();
@@ -130,7 +130,7 @@ class Apiki_Favorites_REST_Controller {
 
     /**
      * POST /favorites
-     * Adiciona um post aos favoritos.
+     * Add a post to your favorites.
      */
     public function add_favorite( WP_REST_Request $request ) {
         $user_id = get_current_user_id();
@@ -152,7 +152,7 @@ class Apiki_Favorites_REST_Controller {
 
     /**
      * DELETE /favorites
-     * Remove um post dos favoritos.
+     * Remove a post from your favorites.
      */
     public function remove_favorite( WP_REST_Request $request ) {
         $user_id = get_current_user_id();
@@ -174,7 +174,7 @@ class Apiki_Favorites_REST_Controller {
 
     /**
      * GET /favorites/check?post_id=123
-     * Verifica se um post está favoritado.
+     * Check if a post has been favorited.
      */
     public function check_favorite( WP_REST_Request $request ) {
         $user_id = get_current_user_id();

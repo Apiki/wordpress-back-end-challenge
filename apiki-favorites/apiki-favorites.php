@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Apiki Favorites
- * Description: Sistema de favoritos de posts via WP REST API para usuários logados.
+ * Description: Post favorites system via WP REST API for logged-in users.
  * Version: 1.0.0
- * Author: ANDRE
+ * Author: ANDRE AND COPILOT
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

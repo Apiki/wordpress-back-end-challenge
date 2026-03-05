@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Apiki_Favorites_Service {
 
     /**
-     * Retorna o nome completo da tabela (com prefixo).
+     * Returns the full table name (including prefix).
      *
      * @return string
      */
@@ -17,12 +17,12 @@ class Apiki_Favorites_Service {
     }
 
     /**
-     * Adiciona um post aos favoritos do usuário.
+     * Adds a post to the user's favorites.
      *
      * @param int $user_id
      * @param int $post_id
      *
-     * @return string status: 'favorited' ou 'already_favorited'
+     * @return string status: 'favorited' or 'already_favorited'
      */
     public function add_favorite( $user_id, $post_id ) {
         global $wpdb;
@@ -46,12 +46,12 @@ class Apiki_Favorites_Service {
     }
 
     /**
-     * Remove um post dos favoritos do usuário.
+     * Remove a post from the user's favorites.
      *
      * @param int $user_id
      * @param int $post_id
      *
-     * @return string status: 'unfavorited' ou 'not_found'
+     * @return string status: 'unfavorited' or 'not_found'
      */
     public function remove_favorite( $user_id, $post_id ) {
         global $wpdb;
@@ -75,7 +75,7 @@ class Apiki_Favorites_Service {
     }
 
     /**
-     * Retorna IDs de posts favoritados pelo usuário.
+     * Returns IDs of posts favorited by the user.
      *
      * @param int $user_id
      *
@@ -97,7 +97,7 @@ class Apiki_Favorites_Service {
     }
 
     /**
-     * Verifica se um post está favoritado pelo usuário.
+     * Check if a post has been favored by the user.
      *
      * @param int $user_id
      * @param int $post_id
