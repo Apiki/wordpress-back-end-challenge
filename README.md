@@ -1,27 +1,34 @@
-# WordPress Back-end Challenge
+# Apiki Favoritos
 
-Desafio para os futuros programadores back-end em WordPress da Apiki.
+Plugin WordPress para favoritar posts via WP REST API.
 
-## Introdução
+## Instalação
 
-Desenvolva um Plugin em WordPress que implemente a funcionalidade de favoritar posts para usuários logados usando a [WP REST API](https://developer.wordpress.org/rest-api/).
+1. Copie a pasta `apiki-favoritos` para `wp-content/plugins/`
+2. Ative o plugin no painel do WordPress em **Plugins > Plugins instalados**
+3. A tabela `apiki_favoritos` será criada automaticamente no banco de dados
 
-**Especifícações**:
+## Endpoints
 
-* Possibilidade de favoritar e desfavoritar um post;
-* Persistir os dados em uma [tabela a parte](https://codex.wordpress.org/Creating_Tables_with_Plugins);
+Base URL: `/wp-json/apiki/v1`
 
-## Instruções
+### Listar favoritos
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
+```
+GET /wp-json/apiki/v1/favoritos
+```
 
-## Pré-requisitos
+Retorna todos os posts favoritados pelo usuário logado.
 
-* PHP >= 5.6
-* Orientado a objetos
+### Favoritar um post
 
-## Dúvidas
+```
+POST /wp-json/apiki/v1/favoritos/{post_id}
+```
 
-Em caso de dúvidas, crie uma issue.
+### Desfavoritar um post
+
+```
+DELETE /wp-json/apiki/v1/favoritos/{post_id}
+```
+
