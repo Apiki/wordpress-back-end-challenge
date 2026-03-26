@@ -1,0 +1,87 @@
+.loader {
+  aspect-ratio: 1;
+  color: #dc1818;
+  background-color: #0000;
+  background-image: radial-gradient(circle at 60% 65%, currentColor 62%, #0000 65%), radial-gradient(circle at 40% 65%, currentColor 62%, #0000 65%), linear-gradient(to bottom left, currentColor 42%, #0000 43%), linear-gradient(to bottom right, currentColor 42%, #0000 43%);
+  background-position: 0 0, 100% 0, 0 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-attachment: scroll, scroll, scroll, scroll;
+  background-origin: padding-box, padding-box, padding-box, padding-box;
+  background-clip: border-box, border-box, border-box, border-box;
+  width: 50px;
+  position: relative;
+}
+
+.loader:after {
+  content: "";
+  background: inherit;
+  opacity: .4;
+  animation: 1s infinite l3;
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes l3 {
+  to {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+.favorite-post-button {
+  cursor: pointer;
+  opacity: .5;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  transition: all .3s ease-in-out;
+  display: block;
+}
+
+.favorite-post-button:hover, .favorite-post-button.is-favorite {
+  opacity: 1;
+  transform: scale(2);
+}
+
+.favorite-post-button img {
+  pointer-events: none;
+  height: 32px;
+}
+
+#dialog-loader {
+  opacity: 0;
+  transition: opacity .7s ease-out, transform .7s ease-out, overlay .7s ease-out allow-discrete, display .7s ease-out allow-discrete;
+  background-color: #0000;
+  border: none;
+  padding: 150px;
+  transform: scaleY(0);
+}
+
+#dialog-loader:open {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+@starting-style {
+  #dialog-loader:open {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+#dialog-loader::backdrop {
+  transition: background-color .7s ease-out allow-discrete;
+  background-color: #fff0;
+}
+
+#dialog-loader:open::backdrop {
+  backdrop-filter: blur(10px);
+  background-color: #ffffff80;
+}
+
+#dialog-loader .loader {
+  width: 96px;
+}
+/*# sourceMappingURL=index.css.map */

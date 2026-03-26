@@ -1,0 +1,19 @@
+{
+  "name": "wordpress-back-end-challenge",
+  "version": "1.0.0",
+  "source": "index.ts",
+  "repository": "git@github.com:Apiki/wordpress-back-end-challenge.git",
+  "author": "Kayo Tusthler <kayo.tusthler@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.16.4",
+    "parcel": "2.16.4"
+  },
+  "scripts": {
+    "dev": "parcel watch index.ts",
+    "build": "parcel build index.ts"
+  },
+  "dependencies": {
+    "toastify-js": "^1.12.0"
+  }
+}

@@ -1,0 +1,61 @@
+@import './loader.scss';
+
+.favorite-post-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    opacity: 0.5;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &.is-favorite {
+        opacity: 1;
+        transform: scale(2);
+    }
+
+    img {
+        height: 32px;
+        pointer-events: none;
+    }
+}
+
+#dialog-loader {
+    background-color: transparent;
+    border: none;
+    opacity: 0;
+    padding: 150px;
+    transform: scaleY(0);
+    transition: opacity 0.7s ease-out,
+                transform 0.7s ease-out,
+                overlay 0.7s ease-out allow-discrete,
+                display 0.7s ease-out allow-discrete;
+
+    &:open {
+    opacity: 1;
+    transform: scaleY(1);
+    }
+
+    /* Styles the *starting point* of the open state */
+    /* Must come AFTER the dialog:open rule due to equal specificity */
+    @starting-style {
+        &:open {
+            opacity: 0;
+            transform: scaleY(0);
+        }
+    }
+
+    &::backdrop {
+        background-color: rgba(255, 255, 255, 0);
+        transition: background-color 0.7s ease-out allow-discrete;
+    }
+
+    &:open::backdrop {
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .loader { width: 96px; }
+}
