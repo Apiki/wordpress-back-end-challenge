@@ -30,7 +30,7 @@ class Apiki_Favorites_Repository {
 	}
 
 	public function insert( $user_id, $post_id ) {
-		$result = $this->wpdb->insert(
+		return $this->wpdb->insert(
 			$this->table_name,
 			array(
 				'user_id' => $user_id,
@@ -41,12 +41,10 @@ class Apiki_Favorites_Repository {
 				'%d',
 			)
 		);
-
-		return false !== $result;
 	}
 
 	public function delete( $user_id, $post_id ) {
-		$result = $this->wpdb->delete(
+		return $this->wpdb->delete(
 			$this->table_name,
 			array(
 				'user_id' => $user_id,
@@ -57,7 +55,5 @@ class Apiki_Favorites_Repository {
 				'%d',
 			)
 		);
-
-		return false !== $result && $result > 0;
 	}
 }

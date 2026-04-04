@@ -62,7 +62,17 @@ class Apiki_Favorites_REST_Controller {
 			);
 		}
 
-		if ( ! $this->repository->insert( $user_id, $post_id ) ) {
+		$insert_result = $this->repository->insert( $user_id, $post_id );
+
+		if ( false === $insert_result ) {
+			if ( $this->repository->exists( $user_id, $post_id ) ) {
+				return new WP_Error(
+					'apiki_favorites_conflict',
+					'Post already favorited.',
+					array( 'status' => 409 )
+				);
+			}
+
 			return new WP_Error(
 				'apiki_favorites_insert_error',
 				'Could not favorite post.',
@@ -96,7 +106,17 @@ class Apiki_Favorites_REST_Controller {
 			);
 		}
 
-		if ( ! $this->repository->delete( $user_id, $post_id ) ) {
+		$delete_result = $this->repository->delete( $user_id, $post_id );
+
+		if ( 0 === $delete_result ) {
+			return new WP_Error(
+				'apiki_favorites_not_found',
+				'Favorite not found.',
+				array( 'status' => 404 )
+			);
+		}
+
+		if ( false === $delete_result ) {
 			return new WP_Error(
 				'apiki_favorites_delete_error',
 				'Could not unfavorite post.',
