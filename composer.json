@@ -1,0 +1,19 @@
+{
+  "name": "apiki/favorites",
+  "description": "WordPress plugin for favoriting posts via REST API.",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">= 8.1"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "ApikiFavorites\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ApikiFavorites\\Tests\\": "tests/"
+    }
+  }
+}

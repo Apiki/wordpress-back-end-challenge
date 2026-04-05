@@ -1,0 +1,14 @@
+{
+  "name": "apiki-favorites",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "parcel watch assets/ts/index.ts --dist-dir dist",
+    "build": "parcel build assets/ts/index.ts --dist-dir dist --no-source-maps"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.0",
+    "parcel": "^2.16.0",
+    "typescript": "^5.7.0"
+  }
+}

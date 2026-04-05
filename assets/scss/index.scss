@@ -1,0 +1,71 @@
+.apiki-favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+
+  &--active {
+    opacity: 1;
+
+    svg {
+      fill: #e53935;
+    }
+  }
+
+  &--loading {
+    opacity: 0.4;
+    pointer-events: none;
+    animation: pulse 0.8s infinite alternate;
+  }
+
+  svg {
+    fill: none;
+    stroke: #e53935;
+    stroke-width: 2;
+    transition: fill 0.2s ease;
+  }
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+.apiki-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  z-index: 99999;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &--success {
+    background: #43a047;
+  }
+
+  &--error {
+    background: #e53935;
+  }
+}
