@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<ruleset name="Apiki Favorites">
+    <description>Coding standards for the Apiki Favorites plugin.</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <arg value="sp"/>
+
+    <file>apiki-favorites.php</file>
+    <file>uninstall.php</file>
+    <file>src</file>
+
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+
+    <!--
+        We adopt WordPress security/i18n/db rules but opt out of cosmetic
+        rules that conflict with modern PSR-12-style PHP 8.1: tabs-over-
+        spaces, array() over [], brace placement, alignment, and PHPDoc
+        requirements that don't add value for self-evident typed code.
+    -->
+    <rule ref="WordPress">
+        <!-- PSR-4 namespaces: file names follow class names, not snake_case. -->
+        <exclude name="WordPress.Files.FileName"/>
+
+        <!-- Yoda conditions: stylistic choice we don't enforce. -->
+        <exclude name="WordPress.PHP.YodaConditions"/>
+
+        <!-- Short array syntax is fine in 2026; WP core itself uses it now. -->
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+
+        <!-- Indentation: we use 4 spaces (PSR-12), not tabs. -->
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+        <!-- Brace placement: PSR-12 puts function brace on next line. -->
+        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+        <exclude name="Generic.Classes.OpeningBraceSameLine"/>
+
+        <!-- Function call spacing: PSR-12 doesn't put space inside parens. -->
+        <exclude name="PEAR.Functions.FunctionCallSignature"/>
+        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+        <exclude name="NormalizedArrays.Arrays.ArrayBraceSpacing"/>
+
+        <!-- Array alignment: not worth the churn for small assoc arrays. -->
+        <exclude name="WordPress.Arrays.MultipleStatementAlignment"/>
+        <exclude name="WordPress.Arrays.ArrayIndentation"/>
+        <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions"/>
+
+        <!-- PHPDoc: our methods are typed and self-documenting. -->
+        <exclude name="Squiz.Commenting.FileComment"/>
+        <exclude name="Squiz.Commenting.FunctionComment"/>
+        <exclude name="Squiz.Commenting.ClassComment"/>
+        <exclude name="Squiz.Commenting.VariableComment"/>
+        <exclude name="Generic.Commenting.DocComment"/>
+
+        <!-- Inline control structures: we never use them anyway. -->
+        <exclude name="Generic.ControlStructures.InlineControlStructure"/>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="apiki-favorites"/>
+            </property>
+        </properties>
+    </rule>
+
+    <config name="minimum_supported_wp_version" value="6.0"/>
+
+    <rule ref="PHPCompatibilityWP"/>
+    <config name="testVersion" value="8.1-"/>
+</ruleset>

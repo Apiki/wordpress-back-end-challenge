@@ -1,0 +1,54 @@
+services:
+  wordpress:
+    image: wordpress:6.6-php8.1-apache
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wp
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('WP_ENVIRONMENT_TYPE', 'local');
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - wp_data:/var/www/html
+      # The plugin folder is mounted into the wp-content/plugins directory.
+      # Changes on the host are visible immediately inside the container.
+      - ./:/var/www/html/wp-content/plugins/apiki-favorites
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: wp
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # CLI service for running composer / phpcs without polluting the host.
+  # Usage:
+  #   docker compose run --rm cli install
+  #   docker compose run --rm cli lint
+  cli:
+    image: composer:2
+    working_dir: /app
+    volumes:
+      - ./:/app
+    entrypoint: ["composer"]
+    command: ["--version"]
+
+volumes:
+  wp_data:
+  db_data:
